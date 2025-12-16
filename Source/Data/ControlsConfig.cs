@@ -124,7 +124,7 @@ public class ControlsConfig
 				new(Buttons.South) { OnlyFor = Gamepads.Nintendo },
 			],
 			["Pause"] = [
-				new(Keys.Enter), new(Keys.Escape),
+				new(Keys.Escape),
 				new(Buttons.Start), new(Buttons.Select), new(Buttons.Back)
 			],
 		},
