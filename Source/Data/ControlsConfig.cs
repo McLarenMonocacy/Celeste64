@@ -15,8 +15,8 @@ public class ControlsConfig
 		public Axes? Axis { get; set; }
 		public float AxisDeadzone { get; set; }
 		public bool AxisInverted { get; set; }
-		public Gamepads? OnlyFor { get; set; }
-		public Gamepads? NotFor { get; set; }
+		public GamepadProviders? OnlyFor { get; set; }
+		public GamepadProviders? NotFor { get; set; }
 
 		public Binding() {}
 		public Binding(Keys input) => Key = input;
@@ -42,10 +42,10 @@ public class ControlsConfig
 			else
 				return true;
 
-			if (OnlyFor.HasValue && Input.Controllers[index].Gamepad != OnlyFor.Value)
+			if (OnlyFor.HasValue && Input.Controllers[index].GamepadProvider != OnlyFor.Value)
 				return false;
 
-			if (NotFor.HasValue && Input.Controllers[index].Gamepad == NotFor.Value)
+			if (NotFor.HasValue && Input.Controllers[index].GamepadProvider == NotFor.Value)
 				return false;
 
 			return true;
@@ -115,13 +115,13 @@ public class ControlsConfig
 			],
 			["Confirm"] = [
 				new(Keys.Enter),
-				new(Buttons.South) { NotFor = Gamepads.Nintendo },
-				new(Buttons.East) { OnlyFor = Gamepads.Nintendo },
+				new(Buttons.South) { NotFor = GamepadProviders.Nintendo },
+				new(Buttons.East) { OnlyFor = GamepadProviders.Nintendo },
 			],
 			["Cancel"] = [
 				new(Keys.Escape),
-				new(Buttons.East) { NotFor = Gamepads.Nintendo },
-				new(Buttons.South) { OnlyFor = Gamepads.Nintendo },
+				new(Buttons.East) { NotFor = GamepadProviders.Nintendo },
+				new(Buttons.South) { OnlyFor = GamepadProviders.Nintendo },
 			],
 			["Pause"] = [
 				new(Keys.Escape),

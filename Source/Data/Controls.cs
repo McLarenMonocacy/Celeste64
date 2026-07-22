@@ -82,20 +82,20 @@ public static class Controls
 
 	private static readonly Dictionary<string, Dictionary<string, string>> prompts = [];
 
-	private static string GetControllerName(Gamepads pad) => pad switch
+	private static string GetControllerName(GamepadProviders pad) => pad switch
 	{
-		Gamepads.DualShock4 => "PlayStation 4",
-		Gamepads.DualSense => "PlayStation 5",
-		Gamepads.Nintendo => "Nintendo Switch",
-		Gamepads.Xbox => "Xbox Series",
-		_ => "Xbox Series",
+		GamepadProviders.PlayStation => "PlayStation",
+		GamepadProviders.Nintendo => "Nintendo Switch",
+		GamepadProviders.Xbox => "Xbox Series",
+		_ => "Generic Controller",
+		
 	};
 
 	private static string GetPromptLocation(string name)
 	{
 		var gamepad = Input.Controllers[0];
 		var deviceTypeName = 
-			gamepad.Connected ? GetControllerName(gamepad.Gamepad) : "PC";
+			gamepad.Connected ? GetControllerName(gamepad.GamepadProvider) : "PC";
 
 		if (!prompts.TryGetValue(deviceTypeName, out var list))
 			prompts[deviceTypeName] = list = [];

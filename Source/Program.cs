@@ -43,8 +43,8 @@ class Program
 		error.AppendLine($"Call Stack:");
 		error.AppendLine(e?.ToString() ?? string.Empty);
 		error.AppendLine($"Game Output:");
-		lock (Log.Logs)
-			error.AppendLine(Log.Logs.ToString());
+		lock (Log.GetHistory())
+			error.AppendLine(Log.GetHistory());
 
 		// write to file
 		string path = ErrorFileName;
